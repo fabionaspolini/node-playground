@@ -54,27 +54,39 @@ printLine()
 // 4. Operações no array
 
 // Filtrar paradigma "poo" (case insensitive)
-const apenasPOO = languages.filter(lang =>
+const onlyPoo = languages.filter(lang =>
     lang.paradigma.toLowerCase() === 'poo'
 );
 
 // Map para transformar estrutura de dados
-const listaTransformada = languages.map(lang => ({
+const transformedList = languages.map(lang => ({
     id: lang.id,
     nome: lang.nome,
     frase: `A linguagem ${lang.nome} possui o paradigma ${lang.paradigma}`
 }));
 
 // Agregar informações
-const agrupadoPorParadigma = Object.groupBy(languages, lang => lang.paradigma.toLowerCase());
+const groupedByParadigma = Object.groupBy(languages, lang => lang.paradigma.toLowerCase());
 
-// Acesso: agrupadoPorParadigma['misto'] retornará o array correspondente
+const groupedByParadigmaWithStringArrayValue = Object.fromEntries(
+    Object.entries(groupedByParadigma).map(([paradigma, lista]) => [
+        paradigma,
+        lista.map(l => l.nome.toUpperCase()) // Aqui modificamos a estrutura interna
+    ])
+);
 
 console.log("Only POO languages")
-console.table(apenasPOO)
+console.table(onlyPoo)
 
 console.log("Transformed object")
-console.table(listaTransformada)
+console.table(transformedList)
 
-console.log("Aggregated object")
-console.table(agrupadoPorParadigma)
+
+console.log("Grouped by paradigma")
+console.table(groupedByParadigma)
+
+console.log("Grouped by paradigma - 'poo' key")
+console.table(groupedByParadigma["poo"])
+
+console.log("Grouped by paradigma with string array value")
+console.table(groupedByParadigmaWithStringArrayValue)
