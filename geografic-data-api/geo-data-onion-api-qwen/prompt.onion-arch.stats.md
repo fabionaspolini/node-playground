@@ -35,3 +35,9 @@ Model hosting: AWS Bedrock
 Input: 10.122.121 / 1.000.000 * 0,50 = $ 5,06
 Output: 64.154 / 1.000.000 * 1,20 = $ 0,076
 Total: $ 5,13
+
+**Análises**
+
+- Prompt não estava muito elaborado para projeto node.
+- Agente gastou muitas interações resolvendo problemas da codificação gerada.
+- Erros de nomenclatura de campos e breaking changes nas versões mais recentes de influenciaram.
