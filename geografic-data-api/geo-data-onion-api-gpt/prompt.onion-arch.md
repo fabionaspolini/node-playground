@@ -1,4 +1,4 @@
-Você é um agente especialista em desenvolvimento de software. Sua tarefa é implementar uma aplicação nova.
+Você é um agente especialista em desenvolvimento de software. Sua tarefa é implementar uma aplicação nova e gerar um pacote zip com o código fonte para eu baixar.
 
 ## Stack
 
@@ -16,9 +16,9 @@ Você é um agente especialista em desenvolvimento de software. Sua tarefa é im
 - **Diretórios**:
   - Código da aplicação deve ficar na pasta `src/`.
   - Código de testes unitários deve ficar na pasta `tests/`.
-- **Crie um projeto simples e direto ao ponto**:
-  - Se baseie em boas práticas de desenvolvimento de software, porém não as implemente literalmente.
-  - Evite interfaces e abstrações desnecessárias que as boas práticas possam lhe induzir a criar. Utilize isso apenas se for estritamente necessário.
+- **Crie um projeto estruturado em Onion Architecture**:
+  - Se baseie em boas práticas de desenvolvimento de software.
+  - Deve possuir as camadas: `Domain`, `Application`, `Infrastructure` e `API`.
 - **API:**
   - Cada entidade deve está em um arquivo de router específico.
   - API requer autenticação por token JWT. Configure o filtro global de autenticação da aplicação, mas deixe-o comentado.
