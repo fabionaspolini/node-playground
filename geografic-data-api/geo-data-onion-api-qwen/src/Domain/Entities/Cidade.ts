@@ -20,7 +20,7 @@ export class Cidade {
   /**
    * CEP/Zip local
    */
-  códigoPostal?: string;
+  codigoPostal?: string;
   
   /**
    * Coordenada para mapas e logística (Latitude)
@@ -60,7 +60,7 @@ export class Cidade {
     this.id = cidade.id!;
     this.estadoId = cidade.estadoId!;
     this.nome = cidade.nome!;
-    this.códigoPostal = cidade.códigoPostal;
+    this.codigoPostal = cidade.codigoPostal;
     this.latitude = cidade.latitude;
     this.longitude = cidade.longitude;
     this.ativo = cidade.ativo ?? true;

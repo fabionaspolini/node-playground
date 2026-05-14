@@ -20,7 +20,7 @@ export interface ICidadeCreateRequest {
   /**
    * Postal code (CEP/Zip)
    */
-  códigoPostal?: string;
+  codigoPostal?: string;
 
   /**
    * Latitude coordinate for maps and logistics
@@ -83,7 +83,7 @@ export interface ICidadeUpdateRequest {
   /**
    * Postal code (CEP/Zip)
    */
-  códigoPostal?: string;
+  codigoPostal?: string;
 
   /**
    * Latitude coordinate for maps and logistics

@@ -13,7 +13,9 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "kafka:consume": "ts-node src/infrastructure/kafka/consumer.ts"
+    "kafka:consume": "ts-node src/infrastructure/kafka/consumer.ts",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
   },
   "keywords": [],
   "author": "",
@@ -41,6 +43,10 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/supertest": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.3",
+    "@typescript-eslint/parser": "^8.59.3",
+    "eslint": "^10.3.0",
+    "globals": "^17.6.0",
     "jest": "^30.4.2",
     "jest-mock-extended": "^4.0.1",
     "nodemon": "^3.1.14",

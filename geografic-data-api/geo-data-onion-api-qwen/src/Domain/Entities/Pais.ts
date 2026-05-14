@@ -18,25 +18,25 @@ export class Pais {
    * Código ISO 3166-1 alpha-3
    * @example "BRA", "USA"
    */
-  códigoISO3: string;
+  codigoISO3: string;
   
   /**
    * Código numérico da ONU
    * @example 76, 840
    */
-  códigoONU: number;
+  codigoONU: number;
   
   /**
    * DDI (Código de discagem)
    * @example "+55", "+1"
    */
-  códigoDDI: string;
+  codigoDDI: string;
   
   /**
    * Código da moeda (ISO 4217)
    * @example "BRL", "USD"
    */
-  códigoMoeda: string;
+  codigoMoeda: string;
   
   /**
    * Idioma principal
@@ -71,10 +71,10 @@ export class Pais {
   constructor(pais: Partial<Pais>) {
     this.id = pais.id!;
     this.nome = pais.nome!;
-    this.códigoISO3 = pais.códigoISO3!;
-    this.códigoONU = pais.códigoONU!;
-    this.códigoDDI = pais.códigoDDI!;
-    this.códigoMoeda = pais.códigoMoeda!;
+    this.codigoISO3 = pais.codigoISO3!;
+    this.codigoONU = pais.codigoONU!;
+    this.codigoDDI = pais.codigoDDI!;
+    this.codigoMoeda = pais.codigoMoeda!;
     this.defaultLocale = pais.defaultLocale!;
     this.ativo = pais.ativo ?? true;
     this.createdAt = pais.createdAt;

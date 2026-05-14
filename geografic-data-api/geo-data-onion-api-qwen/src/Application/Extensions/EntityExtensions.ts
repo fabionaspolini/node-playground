@@ -31,10 +31,10 @@ export class EntityExtensions {
     return {
       id: entity.id,
       nome: entity.nome,
-      códigoISO3: entity.códigoISO3,
-      códigoONU: entity.códigoONU,
-      códigoDDI: entity.códigoDDI,
-      códigoMoeda: entity.códigoMoeda,
+      codigoISO3: entity.codigoISO3,
+      codigoONU: entity.codigoONU,
+      codigoDDI: entity.codigoDDI,
+      codigoMoeda: entity.codigoMoeda,
       defaultLocale: entity.defaultLocale,
       ativo: entity.ativo
     };
@@ -49,10 +49,10 @@ export class EntityExtensions {
     return {
       id: entity.id,
       nome: entity.nome,
-      códigoISO3: entity.códigoISO3,
-      códigoONU: entity.códigoONU,
-      códigoDDI: entity.códigoDDI,
-      códigoMoeda: entity.códigoMoeda,
+      codigoISO3: entity.codigoISO3,
+      codigoONU: entity.codigoONU,
+      codigoDDI: entity.codigoDDI,
+      codigoMoeda: entity.codigoMoeda,
       defaultLocale: entity.defaultLocale,
       ativo: entity.ativo,
       createdAt: entity.createdAt!,
@@ -124,7 +124,7 @@ export class EntityExtensions {
       id: entity.id,
       estadoId: entity.estadoId,
       nome: entity.nome,
-      códigoPostal: entity.códigoPostal,
+      codigoPostal: entity.codigoPostal,
       latitude: entity.latitude,
       longitude: entity.longitude,
       ativo: entity.ativo
@@ -141,7 +141,7 @@ export class EntityExtensions {
       id: entity.id,
       estadoId: entity.estadoId,
       nome: entity.nome,
-      códigoPostal: entity.códigoPostal,
+      codigoPostal: entity.codigoPostal,
       latitude: entity.latitude,
       longitude: entity.longitude,
       ativo: entity.ativo,
@@ -171,10 +171,10 @@ export class EntityExtensions {
     return new Pais({
       id: dto.id,
       nome: dto.nome,
-      códigoISO3: dto.códigoISO3,
-      códigoONU: dto.códigoONU,
-      códigoDDI: dto.códigoDDI,
-      códigoMoeda: dto.códigoMoeda,
+      codigoISO3: dto.codigoISO3,
+      codigoONU: dto.codigoONU,
+      codigoDDI: dto.codigoDDI,
+      codigoMoeda: dto.codigoMoeda,
       defaultLocale: dto.defaultLocale,
       ativo: dto.ativo ?? true
     });
@@ -206,7 +206,7 @@ export class EntityExtensions {
       id: dto.id,
       estadoId: dto.estadoId,
       nome: dto.nome,
-      códigoPostal: dto.códigoPostal,
+      codigoPostal: dto.codigoPostal,
       latitude: dto.latitude,
       longitude: dto.longitude,
       ativo: dto.ativo ?? true

@@ -56,8 +56,8 @@ export class CidadeRepository implements ICidadeRepository {
       where.nome = { contains: filters.nome, mode: "insensitive" };
     }
     
-    if (filters.códigoPostal !== undefined) {
-      where.codigo_postal = { contains: filters.códigoPostal, mode: "insensitive" };
+    if (filters.codigoPostal !== undefined) {
+      where.codigo_postal = { contains: filters.codigoPostal, mode: "insensitive" };
     }
     
     const entities = await this._prisma.cidade.findMany({ where });
@@ -123,7 +123,7 @@ export class CidadeRepository implements ICidadeRepository {
       id: entity.id,
       estadoId: entity.estado_id,
       nome: entity.nome,
-      códigoPostal: entity.codigo_postal,
+      codigoPostal: entity.codigo_postal,
       latitude: entity.latitude ? Number(entity.latitude) : undefined,
       longitude: entity.longitude ? Number(entity.longitude) : undefined,
       ativo: entity.ativo,
@@ -141,7 +141,7 @@ export class CidadeRepository implements ICidadeRepository {
       id: entity.id,
       estado_id: entity.estadoId,
       nome: entity.nome,
-      codigo_postal: entity.códigoPostal,
+      codigo_postal: entity.codigoPostal,
       latitude: entity.latitude,
       longitude: entity.longitude,
       ativo: entity.ativo

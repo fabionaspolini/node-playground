@@ -77,7 +77,7 @@ export class CidadeController {
   public async FindByFilters(filters: Record<string, any>): Promise<ICidadeResponse[]> {
     const cidadeFilters: Partial<Cidade> = {
       nome: filters.nome,
-      códigoPostal: filters.codigo_postal,
+      codigoPostal: filters.codigo_postal,
       ativo: filters.ativo !== undefined ? filters.ativo === "true" : undefined
     };
     const entities = await this._service.findByFilters(cidadeFilters);

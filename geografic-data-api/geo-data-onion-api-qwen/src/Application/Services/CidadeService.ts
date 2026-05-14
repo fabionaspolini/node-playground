@@ -93,7 +93,7 @@ export class CidadeService {
 
   /**
    * Busca cidades por filtros
-   * @param filters - Filtros (nome, códigoPostal, ativo, etc.)
+   * @param filters - Filtros (nome, codigoPostal, ativo, etc.)
    * @returns Lista de cidades filtradas
    */
   public async findByFilters(filters: Partial<Cidade>): Promise<Cidade[]> {

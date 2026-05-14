@@ -82,16 +82,16 @@ const swaggerOptions = {
           properties: {
             id: { type: "string", description: "Country identifier in ISO 3166-1 alpha-2 format", example: "BR" },
             nome: { type: "string", description: "Common country name", example: "Brasil" },
-            códigoISO3: { type: "string", description: "ISO 3166-1 alpha-3 country code", example: "BRA" },
-            códigoONU: { type: "integer", description: "United Nations numeric code", example: 76 },
-            códigoDDI: { type: "string", description: "Dialing code (DDI)", example: "+55" },
-            códigoMoeda: { type: "string", description: "Currency code (ISO 4217)", example: "BRL" },
+            codigoISO3: { type: "string", description: "ISO 3166-1 alpha-3 country code", example: "BRA" },
+            codigoONU: { type: "integer", description: "United Nations numeric code", example: 76 },
+            codigoDDI: { type: "string", description: "Dialing code (DDI)", example: "+55" },
+            codigoMoeda: { type: "string", description: "Currency code (ISO 4217)", example: "BRL" },
             defaultLocale: { type: "string", description: "Main language/locale", example: "pt-BR" },
             ativo: { type: "boolean", description: "Indicates if the record is active", default: true },
             createdAt: { type: "string", format: "date-time" },
             updatedAt: { type: "string", format: "date-time" }
           },
-          required: ["id", "nome", "códigoISO3", "códigoONU", "códigoDDI", "códigoMoeda", "defaultLocale"]
+          required: ["id", "nome", "codigoISO3", "codigoONU", "codigoDDI", "codigoMoeda", "defaultLocale"]
         },
         Estado: {
           type: "object",
@@ -113,7 +113,7 @@ const swaggerOptions = {
             id: { type: "string", description: "City identifier (UUID v7)", format: "uuid", example: "123e4567-e89b-12d3-a456-426614174000" },
             estadoId: { type: "string", description: "State identifier", example: "BR-SP" },
             nome: { type: "string", description: "City name", example: "São Paulo" },
-            códigoPostal: { type: "string", description: "Postal code (CEP/Zip)", example: "01000-000" },
+            codigoPostal: { type: "string", description: "Postal code (CEP/Zip)", example: "01000-000" },
             latitude: { type: "number", description: "Latitude coordinate", example: -23.55052 },
             longitude: { type: "number", description: "Longitude coordinate", example: -46.633308 },
             ativo: { type: "boolean", description: "Indicates if the record is active", default: true },
@@ -175,7 +175,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(JWTAuthMiddleware(JWT_SECRET));
 
 // Rotas
-app.use("/cidades", PaisRouter.initialize(paisController));
+app.use("/paises", PaisRouter.initialize(paisController));
 app.use("/estados", EstadoRouter.initialize(estadoController));
 app.use("/cidades", CidadeRouter.initialize(cidadeController));
 

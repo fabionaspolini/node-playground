@@ -10,10 +10,10 @@ describe("EntityExtensions - Application", () => {
       const pais = new Pais({
         id: "BR",
         nome: "Brasil",
-        códigoISO3: "BRA",
-        códigoONU: 76,
-        códigoDDI: "+55",
-        códigoMoeda: "BRL",
+        codigoISO3: "BRA",
+        codigoONU: 76,
+        codigoDDI: "+55",
+        codigoMoeda: "BRL",
         defaultLocale: "pt-BR",
         ativo: true,
         createdAt: new Date(),
@@ -24,10 +24,10 @@ describe("EntityExtensions - Application", () => {
 
       expect(dto.id).toBe("BR");
       expect(dto.nome).toBe("Brasil");
-      expect(dto.códigoISO3).toBe("BRA");
-      expect(dto.códigoONU).toBe(76);
-      expect(dto.códigoDDI).toBe("+55");
-      expect(dto.códigoMoeda).toBe("BRL");
+      expect(dto.codigoISO3).toBe("BRA");
+      expect(dto.codigoONU).toBe(76);
+      expect(dto.codigoDDI).toBe("+55");
+      expect(dto.codigoMoeda).toBe("BRL");
       expect(dto.defaultLocale).toBe("pt-BR");
       expect(dto.ativo).toBe(true);
       expect(dto.createdAt).toBeDefined();
@@ -67,7 +67,7 @@ describe("EntityExtensions - Application", () => {
         id: "123e4567-e89b-12d3-a456-426614174000",
         estadoId: "BR-SP",
         nome: "São Paulo",
-        códigoPostal: "01000-000",
+        codigoPostal: "01000-000",
         latitude: -23.55052,
         longitude: -46.633308,
         ativo: true,
@@ -80,7 +80,7 @@ describe("EntityExtensions - Application", () => {
       expect(dto.id).toBe("123e4567-e89b-12d3-a456-426614174000");
       expect(dto.estadoId).toBe("BR-SP");
       expect(dto.nome).toBe("São Paulo");
-      expect(dto.códigoPostal).toBe("01000-000");
+      expect(dto.codigoPostal).toBe("01000-000");
       expect(dto.latitude).toBe(-23.55052);
       expect(dto.longitude).toBe(-46.633308);
       expect(dto.ativo).toBe(true);
@@ -94,10 +94,10 @@ describe("EntityExtensions - Application", () => {
       const dto = {
         id: "BR",
         nome: "Brasil",
-        códigoISO3: "BRA",
-        códigoONU: 76,
-        códigoDDI: "+55",
-        códigoMoeda: "BRL",
+        codigoISO3: "BRA",
+        codigoONU: 76,
+        codigoDDI: "+55",
+        codigoMoeda: "BRL",
         defaultLocale: "pt-BR",
         ativo: true
       };
@@ -135,7 +135,7 @@ describe("EntityExtensions - Application", () => {
         id: "123e4567-e89b-12d3-a456-426614174000",
         estadoId: "BR-SP",
         nome: "São Paulo",
-        códigoPostal: "01000-000",
+        codigoPostal: "01000-000",
         latitude: -23.55052,
         longitude: -46.633308,
         ativo: true

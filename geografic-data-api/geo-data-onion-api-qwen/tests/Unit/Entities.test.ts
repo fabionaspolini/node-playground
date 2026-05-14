@@ -8,16 +8,16 @@ describe("Entities - Domain", () => {
       const pais = new Pais({
         id: "BR",
         nome: "Brasil",
-        códigoISO3: "BRA",
-        códigoONU: 76,
-        códigoDDI: "+55",
-        códigoMoeda: "BRL",
+        codigoISO3: "BRA",
+        codigoONU: 76,
+        codigoDDI: "+55",
+        codigoMoeda: "BRL",
         defaultLocale: "pt-BR"
       });
 
       expect(pais.id).toBe("BR");
       expect(pais.nome).toBe("Brasil");
-      expect(pais.códigoISO3).toBe("BRA");
+      expect(pais.codigoISO3).toBe("BRA");
       expect(pais.ativo).toBe(true); // default
     });
 
@@ -25,10 +25,10 @@ describe("Entities - Domain", () => {
       const pais = new Pais({
         id: "BR",
         nome: "Brasil",
-        códigoISO3: "BRA",
-        códigoONU: 76,
-        códigoDDI: "+55",
-        códigoMoeda: "BRL",
+        codigoISO3: "BRA",
+        codigoONU: 76,
+        codigoDDI: "+55",
+        codigoMoeda: "BRL",
         defaultLocale: "pt-BR"
       });
 
@@ -41,10 +41,10 @@ describe("Entities - Domain", () => {
       const pais = new Pais({
         id: "BR",
         nome: "Brasil",
-        códigoISO3: "BRA",
-        códigoONU: 76,
-        códigoDDI: "+55",
-        códigoMoeda: "BRL",
+        codigoISO3: "BRA",
+        codigoONU: 76,
+        codigoDDI: "+55",
+        codigoMoeda: "BRL",
         defaultLocale: "pt-BR",
         ativo: false
       });
@@ -94,7 +94,7 @@ describe("Entities - Domain", () => {
         id: "123e4567-e89b-12d3-a456-426614174000",
         estadoId: "BR-SP",
         nome: "São Paulo",
-        códigoPostal: "01000-000",
+        codigoPostal: "01000-000",
         latitude: -23.55052,
         longitude: -46.633308
       });

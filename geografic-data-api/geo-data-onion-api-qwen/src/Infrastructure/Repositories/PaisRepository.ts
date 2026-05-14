@@ -95,10 +95,10 @@ export class PaisRepository implements IPaisRepository {
     return new Pais({
       id: entity.id,
       nome: entity.nome,
-      códigoISO3: entity.codigo_iso_3,
-      códigoONU: entity.codigo_onu,
-      códigoDDI: entity.codigo_ddi,
-      códigoMoeda: entity.codigo_moeda,
+      codigoISO3: entity.codigo_iso_3,
+      codigoONU: entity.codigo_onu,
+      codigoDDI: entity.codigo_ddi,
+      codigoMoeda: entity.codigo_moeda,
       defaultLocale: entity.default_locale,
       ativo: entity.ativo,
       createdAt: entity.created_at ? new Date(entity.created_at) : undefined,
@@ -114,10 +114,10 @@ export class PaisRepository implements IPaisRepository {
     return {
       id: entity.id,
       nome: entity.nome,
-      codigo_iso_3: entity.códigoISO3,
-      codigo_onu: entity.códigoONU,
-      codigo_ddi: entity.códigoDDI,
-      codigo_moeda: entity.códigoMoeda,
+      codigo_iso_3: entity.codigoISO3,
+      codigo_onu: entity.codigoONU,
+      codigo_ddi: entity.codigoDDI,
+      codigo_moeda: entity.codigoMoeda,
       default_locale: entity.defaultLocale,
       ativo: entity.ativo
     };

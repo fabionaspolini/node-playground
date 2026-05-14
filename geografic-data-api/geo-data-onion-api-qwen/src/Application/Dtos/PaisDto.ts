@@ -18,25 +18,25 @@ export interface IPaisCreateRequest {
    * ISO 3166-1 alpha-3 country code
    * @example "BRA", "USA"
    */
-  códigoISO3: string;
+  codigoISO3: string;
 
   /**
    * United Nations numeric code
    * @example 76, 840
    */
-  códigoONU: number;
+  codigoONU: number;
 
   /**
    * Dialing code (DDI)
    * @example "+55", "+1"
    */
-  códigoDDI: string;
+  codigoDDI: string;
 
   /**
    * Currency code (ISO 4217)
    * @example "BRL", "USD"
    */
-  códigoMoeda: string;
+  codigoMoeda: string;
 
   /**
    * Main language/locale
@@ -90,22 +90,22 @@ export interface IPaisUpdateRequest {
   /**
    * ISO 3166-1 alpha-3 country code
    */
-  códigoISO3?: string;
+  codigoISO3?: string;
 
   /**
    * United Nations numeric code
    */
-  códigoONU?: number;
+  codigoONU?: number;
 
   /**
    * Dialing code (DDI)
    */
-  códigoDDI?: string;
+  codigoDDI?: string;
 
   /**
    * Currency code (ISO 4217)
    */
-  códigoMoeda?: string;
+  codigoMoeda?: string;
 
   /**
    * Main language/locale

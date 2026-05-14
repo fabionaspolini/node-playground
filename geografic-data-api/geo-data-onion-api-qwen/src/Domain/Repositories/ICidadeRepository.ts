@@ -20,7 +20,7 @@ export interface ICidadeRepository extends IRepository<Cidade, string> {
 
   /**
    * Encontra cidades por filtro
-   * @param filters - Filtros (nome, códigoPostal, ativo, etc.)
+   * @param filters - Filtros (nome, codigoPostal, ativo, etc.)
    * @returns Promise com array de cidades
    */
   findByFilters(filters: Partial<Cidade>): Promise<Cidade[]>;
