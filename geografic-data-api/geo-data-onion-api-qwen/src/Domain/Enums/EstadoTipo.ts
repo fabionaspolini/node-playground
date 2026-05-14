@@ -1,0 +1,6 @@
+export enum EstadoTipo {
+  STATE = "STATE",
+  PROVINCE = "PROVINCE",
+  DEPARTMENT = "DEPARTMENT",
+  DISTRICT = "DISTRICT"
+}
