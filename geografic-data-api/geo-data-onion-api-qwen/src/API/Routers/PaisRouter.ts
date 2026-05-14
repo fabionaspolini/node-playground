@@ -88,12 +88,13 @@ export class PaisRouter {
     });
 
     /**
-     * PUT /cidades
+     * PUT /paises/{id}
      * Atualiza um país existente
      */
-    router.put("/", async (req, res) => {
+    router.put("/:id", async (req, res) => {
       try {
-        const request: IPaisUpdateRequest = req.body;
+        const { id } = req.params;
+        const request: IPaisUpdateRequest = { ...req.body, id };
         const entity = EntityExtensions.toPaisEntity(request);
         const updated = await this.service.update(entity);
         const response = EntityExtensions.toPaisResponseDto(updated);

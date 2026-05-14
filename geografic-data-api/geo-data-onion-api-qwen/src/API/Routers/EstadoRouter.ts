@@ -89,12 +89,13 @@ export class EstadoRouter {
     });
 
     /**
-     * PUT /estados
+     * PUT /estados/{id}
      * Atualiza um estado existente
      */
-    router.put("/", async (req, res) => {
+    router.put("/:id", async (req, res) => {
       try {
-        const request: IEstadoUpdateRequest = req.body;
+        const { id } = req.params;
+        const request: IEstadoUpdateRequest = { ...req.body, id };
         const entity = EntityExtensions.toEstadoEntity(request);
         const updated = await this.service.update(entity);
         const response = EntityExtensions.toEstadoResponseDto(updated);

@@ -1,9 +1,9 @@
-## Prompt para implementar repo do zero
-
 Custo do prompt.
 
 Code agent: qwen-code-cli
 Model hosting: AWS Bedrock
+
+## Prompt para implementar repo do zero
 
 ╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
 │                                                                                                  │
@@ -44,7 +44,7 @@ Total: $ 5,13
 - Agente gastou muitas interações resolvendo problemas da codificação gerada.
 - Erros de nomenclatura de campos e breaking changes nas versões mais recentes de influenciaram.
 
-## Novo prompt para refatoraçao de exclusão das controllers
+## continue session: Refatoraçao de exclusão das controllers
 
 **Incremental.**
 
@@ -63,5 +63,32 @@ Total: $ 5,13
 │  Total                       12.418.515                                                          │
 │    ↳ Prompt                  12.345.917                                                          │
 │    ↳ Saída                   72.598                                                              │
+│                                                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+## new session: refatoração para corrigir rota de put
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                  │
+│  Estatísticas da Sessão                                                                          │
+│                                                                                                  │
+│  Resumo da Interação                                                                             │
+│  ID da Sessão:               80fb3580-5490-4045-a18b-b2818278a069                                │
+│  Chamadas de Ferramenta:     11 ( ✓ 11 x 0 )                                                     │
+│  Taxa de Sucesso:            100.0%                                                              │
+│  Acordo do Usuário:          100.0% (1 revisado)                                                 │
+│  Alterações de Código:       +12 -9                                                              │
+│                                                                                                  │
+│  Desempenho                                                                                      │
+│  Tempo Total:                4m 9s                                                               │
+│  Agente Ativo:               1m 6s                                                               │
+│    » Tempo de API:           34.7s (52.6%)                                                       │
+│    » Tempo de Ferramenta:    31.3s (47.4%)                                                       │
+│                                                                                                  │
+│                                                                                                  │
+│  Uso do Modelo                          Reqs     Tokens de Tokens de Saída                       │
+│                                                  Entrada                                         │
+│  ─────────────────────────────────────────────────────────────────────────                       │
+│  qwen.qwen3-coder-next                     8        178.427          1.713                       │
 │                                                                                                  │
 ╰──────────────────────────────────────────────────────────────────────────────────────────────────╯

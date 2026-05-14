@@ -89,12 +89,13 @@ export class CidadeRouter {
     });
 
     /**
-     * PUT /cidades
+     * PUT /cidades/{id}
      * Atualiza uma cidade existente
      */
-    router.put("/", async (req, res) => {
+    router.put("/:id", async (req, res) => {
       try {
-        const request: ICidadeUpdateRequest = req.body;
+        const { id } = req.params;
+        const request: ICidadeUpdateRequest = { ...req.body, id };
         const entity = EntityExtensions.toCidadeEntity(request);
         const updated = await this.service.update(entity);
         const response = EntityExtensions.toCidadeResponseDto(updated);
