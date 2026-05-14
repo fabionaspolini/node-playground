@@ -1,0 +1,83 @@
+{
+  "info": {
+    "name": "API CRUD de Cidades",
+    "description": "Exemplos de requisições para a API de cidades",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:3000/health",
+        "description": "Verifica se o servidor está rodando"
+      }
+    },
+    {
+      "name": "Cidades",
+      "item": [
+        {
+          "name": "Criar Cidade",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/cities",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \"name\": \"São Paulo\",\\n  \"state\": \"SP\"\\n}"
+            },
+            "description": "Cria uma nova cidade"
+          }
+        },
+        {
+          "name": "Listar Cidades",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/cities",
+            "description": "Lista todas as cidades cadastradas"
+          }
+        },
+        {
+          "name": "Obter Cidade por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/cities/{{cityId}}",
+            "description": "Obtém uma cidade específica pelo ID (substitua {{cityId}} pelo ID da cidade)"
+          }
+        },
+        {
+          "name": "Atualizar Cidade",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:3000/cities/{{cityId}}",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\\n  \"name\": \"São Paulo Updated\",\\n  \"state\": \"SP\"\\n}"
+            },
+            "description": "Atualiza uma cidade existente (substitua {{cityId}} pelo ID da cidade)"
+          }
+        },
+        {
+          "name": "Deletar Cidade",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3000/cities/{{cityId}}",
+            "description": "Deleta uma cidade (substitua {{cityId}} pelo ID da cidade)"
+          }
+        }
+      ]
+    }
+  ]
+}
+
