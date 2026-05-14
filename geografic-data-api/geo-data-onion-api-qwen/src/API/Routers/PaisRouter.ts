@@ -1,16 +1,25 @@
 import { Router } from "express";
-import { PaisController } from "../Controllers/PaisController";
+import { PaisService } from "../../Application/Services/PaisService";
+import { EntityExtensions } from "../../Application/Extensions/EntityExtensions";
+import { Pais } from "../../Domain/Entities/Pais";
+import { IPaisCreateRequest, IPaisResponse, IPaisUpdateRequest } from "../../Application/Dtos/PaisDto";
 
 /**
  * Router para gerenciar operações de países
+ * Contém toda a lógica de processamento de requisições
  */
 export class PaisRouter {
   /**
+   * Cria nova instância do router de países
+   * @param service - Serviço de países
+   */
+  constructor(private readonly service: PaisService) {}
+
+  /**
    * Inicializa as rotas de países
-   * @param controller - Controller de países
    * @returns Router configurado
    */
-  public static initialize(controller: PaisController): Router {
+  public getRouter(): Router {
     const router = Router();
 
     /**
@@ -19,9 +28,13 @@ export class PaisRouter {
      */
     router.post("/", async (req, res) => {
       try {
-        const result = await controller.Create(req.body);
-        res.status(201).json(result);
+        const request: IPaisCreateRequest = req.body;
+        const entity = EntityExtensions.toPaisEntity(request);
+        const created = await this.service.create(entity);
+        const response = EntityExtensions.toPaisResponseDto(created);
+        res.status(201).json(response);
       } catch (error) {
+        console.error("Erro ao criar país:", error);
         res.status(500).json({ error: "Erro ao criar país" });
       }
     });
@@ -33,13 +46,15 @@ export class PaisRouter {
     router.get("/:id", async (req, res) => {
       try {
         const { id } = req.params;
-        const result = await controller.GetById(id);
-        if (result) {
-          res.status(200).json(result);
+        const entity = await this.service.getById(id);
+        if (entity) {
+          const response = EntityExtensions.toPaisResponseDto(entity);
+          res.status(200).json(response);
         } else {
           res.status(404).json({ error: "País não encontrado" });
         }
       } catch (error) {
+        console.error("Erro ao buscar país:", error);
         res.status(500).json({ error: "Erro ao buscar país" });
       }
     });
@@ -47,12 +62,27 @@ export class PaisRouter {
     /**
      * GET /cidades
      * Lista todos os países
+     * Permite filtrar por qualquer atributo
      */
     router.get("/", async (req, res) => {
       try {
-        const result = await controller.List(req.query);
-        res.status(200).json(result);
+        const filters = req.query;
+        const ativo = filters.ativo as string;
+        const entityFilters: Partial<Pais> = {
+          ativo: ativo !== undefined ? ativo === "true" : undefined
+        };
+        // Merge com outros filtros
+        Object.entries(filters).forEach(([key, value]) => {
+          if (key !== "ativo" && value) {
+            (entityFilters as any)[key] = value;
+          }
+        });
+
+        const entities = await this.service.findByFilters(entityFilters);
+        const response = EntityExtensions.toPaisResponseDtoList(entities);
+        res.status(200).json(response);
       } catch (error) {
+        console.error("Erro ao listar países:", error);
         res.status(500).json({ error: "Erro ao listar países" });
       }
     });
@@ -63,27 +93,32 @@ export class PaisRouter {
      */
     router.put("/", async (req, res) => {
       try {
-        const result = await controller.Update(req.body);
-        res.status(200).json(result);
+        const request: IPaisUpdateRequest = req.body;
+        const entity = EntityExtensions.toPaisEntity(request);
+        const updated = await this.service.update(entity);
+        const response = EntityExtensions.toPaisResponseDto(updated);
+        res.status(200).json(response);
       } catch (error) {
+        console.error("Erro ao atualizar país:", error);
         res.status(500).json({ error: "Erro ao atualizar país" });
       }
     });
 
     /**
      * DELETE /cidades/{id}
-     * Remove (soft delete) um país
+     * Remove (soft delete) um país - atualiza o atributo Active para false
      */
     router.delete("/:id", async (req, res) => {
       try {
         const { id } = req.params;
-        const result = await controller.Remove(id);
-        if (result) {
+        const success = await this.service.remove(id);
+        if (success) {
           res.status(204).send();
         } else {
           res.status(404).json({ error: "País não encontrado" });
         }
       } catch (error) {
+        console.error("Erro ao remover país:", error);
         res.status(500).json({ error: "Erro ao remover país" });
       }
     });

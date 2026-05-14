@@ -16,14 +16,10 @@ import { CidadeRepository } from "./Infrastructure/Repositories/CidadeRepository
 import { PaisService } from "./Application/Services/PaisService";
 import { EstadoService } from "./Application/Services/EstadoService";
 import { CidadeService } from "./Application/Services/CidadeService";
-import { PaisController } from "./API/Controllers/PaisController";
-import { EstadoController } from "./API/Controllers/EstadoController";
-import { CidadeController } from "./API/Controllers/CidadeController";
 import { PaisRouter } from "./API/Routers/PaisRouter";
 import { EstadoRouter } from "./API/Routers/EstadoRouter";
 import { CidadeRouter } from "./API/Routers/CidadeRouter";
 import { JWTAuthMiddleware } from "./API/Middleware/JWTAuthMiddleware";
-import { DocsRedirectMiddleware } from "./API/Middleware/DocsRedirectMiddleware";
 
 // Configurar ambiente
 dotenv.config();
@@ -50,11 +46,6 @@ const cidadeRepository = new CidadeRepository(prismaClient);
 const paisService = new PaisService(paisRepository);
 const estadoService = new EstadoService(estadoRepository);
 const cidadeService = new CidadeService(cidadeRepository);
-
-// Inicializar controllers
-const paisController = new PaisController(paisService);
-const estadoController = new EstadoController(estadoService);
-const cidadeController = new CidadeController(cidadeService);
 
 // Configurar Swagger
 const swaggerOptions = {
@@ -137,7 +128,7 @@ const swaggerOptions = {
       }
     ]
   },
-  apis: ["./src/API/Routers/*.ts", "./src/API/Controllers/*.ts"]
+  apis: ["./src/API/Routers/*.ts"]
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
@@ -171,13 +162,18 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Middlewares de autenticação e docs
+// Middlewares de autenticação
 app.use(JWTAuthMiddleware(JWT_SECRET));
 
+// Inicializar routers (sem controllers)
+const paisRouter = new PaisRouter(paisService);
+const estadoRouter = new EstadoRouter(estadoService);
+const cidadeRouter = new CidadeRouter(cidadeService);
+
 // Rotas
-app.use("/paises", PaisRouter.initialize(paisController));
-app.use("/estados", EstadoRouter.initialize(estadoController));
-app.use("/cidades", CidadeRouter.initialize(cidadeController));
+app.use("/paises", paisRouter.getRouter());
+app.use("/estados", estadoRouter.getRouter());
+app.use("/cidades", cidadeRouter.getRouter());
 
 // Inicializar conexões
 async function bootstrap() {

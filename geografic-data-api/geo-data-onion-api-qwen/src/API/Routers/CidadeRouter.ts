@@ -1,16 +1,25 @@
 import { Router } from "express";
-import { CidadeController } from "../Controllers/CidadeController";
+import { CidadeService } from "../../Application/Services/CidadeService";
+import { EntityExtensions } from "../../Application/Extensions/EntityExtensions";
+import { Cidade } from "../../Domain/Entities/Cidade";
+import { ICidadeCreateRequest, ICidadeResponse, ICidadeUpdateRequest } from "../../Application/Dtos/CidadeDto";
 
 /**
  * Router para gerenciar operações de cidades
+ * Contém toda a lógica de processamento de requisições
  */
 export class CidadeRouter {
   /**
+   * Cria nova instância do router de cidades
+   * @param service - Serviço de cidades
+   */
+  constructor(private readonly service: CidadeService) {}
+
+  /**
    * Inicializa as rotas de cidades
-   * @param controller - Controller de cidades
    * @returns Router configurado
    */
-  public static initialize(controller: CidadeController): Router {
+  public getRouter(): Router {
     const router = Router();
 
     /**
@@ -19,9 +28,13 @@ export class CidadeRouter {
      */
     router.post("/", async (req, res) => {
       try {
-        const result = await controller.Create(req.body);
-        res.status(201).json(result);
+        const request: ICidadeCreateRequest = req.body;
+        const entity = EntityExtensions.toCidadeEntity(request);
+        const created = await this.service.create(entity);
+        const response = EntityExtensions.toCidadeResponseDto(created);
+        res.status(201).json(response);
       } catch (error) {
+        console.error("Erro ao criar cidade:", error);
         res.status(500).json({ error: "Erro ao criar cidade" });
       }
     });
@@ -33,13 +46,15 @@ export class CidadeRouter {
     router.get("/:id", async (req, res) => {
       try {
         const { id } = req.params;
-        const result = await controller.GetById(id);
-        if (result) {
-          res.status(200).json(result);
+        const entity = await this.service.getById(id);
+        if (entity) {
+          const response = EntityExtensions.toCidadeResponseDto(entity);
+          res.status(200).json(response);
         } else {
           res.status(404).json({ error: "Cidade não encontrada" });
         }
       } catch (error) {
+        console.error("Erro ao buscar cidade:", error);
         res.status(500).json({ error: "Erro ao buscar cidade" });
       }
     });
@@ -47,12 +62,28 @@ export class CidadeRouter {
     /**
      * GET /cidades
      * Lista todas as cidades
+     * Permite filtrar por qualquer atributo
      */
     router.get("/", async (req, res) => {
       try {
-        const result = await controller.List(req.query);
-        res.status(200).json(result);
+        const filters = req.query;
+        const entityFilters: Partial<Cidade> = {
+          ativo: filters.ativo !== undefined 
+            ? (filters.ativo as string) === "true" 
+            : undefined
+        };
+        // Merge com outros filtros
+        Object.entries(filters).forEach(([key, value]) => {
+          if (key !== "ativo" && value) {
+            (entityFilters as any)[key] = value;
+          }
+        });
+
+        const entities = await this.service.findByFilters(entityFilters);
+        const response = EntityExtensions.toCidadeResponseDtoList(entities);
+        res.status(200).json(response);
       } catch (error) {
+        console.error("Erro ao listar cidades:", error);
         res.status(500).json({ error: "Erro ao listar cidades" });
       }
     });
@@ -63,27 +94,32 @@ export class CidadeRouter {
      */
     router.put("/", async (req, res) => {
       try {
-        const result = await controller.Update(req.body);
-        res.status(200).json(result);
+        const request: ICidadeUpdateRequest = req.body;
+        const entity = EntityExtensions.toCidadeEntity(request);
+        const updated = await this.service.update(entity);
+        const response = EntityExtensions.toCidadeResponseDto(updated);
+        res.status(200).json(response);
       } catch (error) {
+        console.error("Erro ao atualizar cidade:", error);
         res.status(500).json({ error: "Erro ao atualizar cidade" });
       }
     });
 
     /**
      * DELETE /cidades/{id}
-     * Remove (soft delete) uma cidade
+     * Remove (soft delete) uma cidade - atualiza o atributo Active para false
      */
     router.delete("/:id", async (req, res) => {
       try {
         const { id } = req.params;
-        const result = await controller.Remove(id);
-        if (result) {
+        const success = await this.service.remove(id);
+        if (success) {
           res.status(204).send();
         } else {
           res.status(404).json({ error: "Cidade não encontrada" });
         }
       } catch (error) {
+        console.error("Erro ao remover cidade:", error);
         res.status(500).json({ error: "Erro ao remover cidade" });
       }
     });

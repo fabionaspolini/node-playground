@@ -1,3 +1,5 @@
+## Prompt para implementar repo do zero
+
 Custo do prompt.
 
 Code agent: qwen-code-cli
@@ -41,3 +43,25 @@ Total: $ 5,13
 - Prompt não estava muito elaborado para projeto node.
 - Agente gastou muitas interações resolvendo problemas da codificação gerada.
 - Erros de nomenclatura de campos e breaking changes nas versões mais recentes de influenciaram.
+
+## Novo prompt para refatoraçao de exclusão das controllers
+
+**Incremental.**
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                  │
+│  Estatísticas de Modelo Para Nerds                                                               │
+│                                                                                                  │
+│  Métrica                     qwen.qwen3-coder-next                                               │
+│  ──────────────────────────────────────────────────────────────────────────────────────────────  │
+│  API                                                                                             │
+│  Solicitações                176                                                                 │
+│  Erros                       0 (0.0%)                                                            │
+│  Latência Média              9.9s                                                                │
+│                                                                                                  │
+│  Tokens                                                                                          │
+│  Total                       12.418.515                                                          │
+│    ↳ Prompt                  12.345.917                                                          │
+│    ↳ Saída                   72.598                                                              │
+│                                                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
