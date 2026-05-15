@@ -25,11 +25,11 @@ Você é um agente especialista em desenvolvimento de software. Sua tarefa é im
   - API requer autenticação por token JWT. Configure o filtro global de autenticação da aplicação, mas deixe-o comentado.
   - Rotas de exclusão devem atualizar o atributo `Active` da entidade para `false`.
   - Rotas devem respeitar o padrão:
-    - `/post` para `Create`.
-    - `/get/:id` para `GetById`.
-    - `/get` para `List`.
-    - `/put/:id` para `Update`.
-    - `/delete/:id` para `Remove`.
+    - POST `/` para `Create`.
+    - GET `/` para `List`.
+    - GET `/:id` para `GetById`.
+    - PUT `/:id` para `Update`.
+    - DELETE `/:id` para `Remove`.
   - **Rotas:**
     - Utilizar kebab-case (sempre lowercase).
     - Não adicionar prefixo `/api/`.
