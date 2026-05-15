@@ -15,7 +15,7 @@ export class PaisController {
 
   async update(req: Request, res: Response) {
     try {
-      const result = await this.useCase.update(req.params.id, req.body);
+      const result = await this.useCase.update(req.params.id as string, req.body);
       return res.json(result);
     } catch (error: any) {
       return res.status(400).json({ message: error.message });
@@ -24,7 +24,7 @@ export class PaisController {
 
   async delete(req: Request, res: Response) {
     try {
-      await this.useCase.delete(req.params.id);
+      await this.useCase.delete(req.params.id as string);
       return res.status(204).send();
     } catch (error: any) {
       return res.status(400).json({ message: error.message });
@@ -33,7 +33,7 @@ export class PaisController {
 
   async getById(req: Request, res: Response) {
     try {
-      const result = await this.useCase.getById(req.params.id);
+      const result = await this.useCase.getById(req.params.id as string);
       if (!result) return res.status(404).json({ message: "País não encontrado" });
       return res.json(result);
     } catch (error: any) {
