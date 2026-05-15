@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Pais {
+  id            String   @id @db.VarChar(2)
+  nome          String
+  codigoISO3    String   @db.VarChar(3)
+  codigoONU     Int
+  codigoDDI     String
+  codigoMoeda   String   @db.VarChar(3)
+  defaultLocale String
+  ativo         Boolean  @default(true)
+  estados       Estado[]
+
+  @@map("paises")
+}
+
+model Estado {
+  id      String   @id @db.VarChar(6)
+  paisId  String   @db.VarChar(2)
+  nome    String
+  sigla   String
+  tipo    String
+  ativo   Boolean  @default(true)
+  pais    Pais     @relation(fields: [paisId], references: [id])
+  cidades Cidade[]
+
+  @@map("estados")
+}
+
+model Cidade {
+  id           String  @id @default(uuid()) @db.Uuid
+  estadoId     String  @db.VarChar(6)
+  nome         String
+  codigoPostal String
+  latitude     Decimal @db.Decimal(10, 8)
+  longitude    Decimal @db.Decimal(11, 8)
+  ativo        Boolean @default(true)
+  estado       Estado  @relation(fields: [estadoId], references: [id])
+
+  @@map("cidades")
+}
