@@ -2,7 +2,6 @@ import Fastify from 'fastify';
 import cidadeRouter from "./routers/cidade-router.js";
 
 const fastify = Fastify({ logger: true });
-
 fastify.register(cidadeRouter, { prefix: "/cidades" })
 
 // Inicialização do Servidor
