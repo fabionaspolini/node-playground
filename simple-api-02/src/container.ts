@@ -1,7 +1,8 @@
 import {PrismaClient} from "./generated/prisma/client.js";
-import {asValue, createContainer} from "awilix";
+import {asClass, asValue, createContainer, Lifetime} from "awilix";
 import {PrismaPg} from "@prisma/adapter-pg";
 import {loadEnvFile} from "node:process";
+import CidadeRepository from "./infra/repositories/cidade-repository.js";
 
 loadEnvFile()
 
@@ -17,12 +18,14 @@ const container = createContainer({
 
 // Registra a conexão do Prisma no container para gerenciar o ciclo de vida
 container.register({
-    prisma: asValue(prisma) // singleton - prisma recomenda uso como singleton
+    prisma: asValue(prisma), // singleton - prisma recomenda uso como singleton
+    cidadeRepository: asClass(CidadeRepository).setLifetime(Lifetime.SINGLETON)
 });
 
 // Tipagem para ajudar o TypeScript a autocompletar as dependências
 export interface ContainerCradle {
     prisma: PrismaClient;
+    cidadeRepository: CidadeRepository;
 }
 
 export {container}
