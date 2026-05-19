@@ -1,14 +1,14 @@
 import type {Cidade} from "../../models/cidade.js";
 import {Prisma, type PrismaClient} from "../../generated/prisma/client.js";
-import type {ContainerCradle} from "../../container.js";
 import type {DbOperationResult} from "./types.js";
 import type {CidadeCreateInput, CidadeUpdateInput} from "../../generated/prisma/models/Cidade.js";
+import type {Cradle} from "@fastify/awilix";
 
 
 export default class CidadeRepository {
     prisma: PrismaClient;
     
-    constructor({ prisma }: ContainerCradle) {
+    constructor({ prisma }: Cradle) {
         this.prisma = prisma;
     }
     

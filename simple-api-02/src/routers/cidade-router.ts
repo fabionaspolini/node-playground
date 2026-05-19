@@ -1,10 +1,10 @@
 import type {FastifyInstance} from "fastify";
 import type {Cidade} from "../models/cidade.js";
-import {container, type ContainerCradle} from "../container.js";
+import {diContainer} from "@fastify/awilix";
 
 export default async function cidadeRouter(fastify: FastifyInstance) {
-    // Resolve as dependências do container necessárias para as rotas
-    const { prisma, cidadeRepository } = container.cradle as ContainerCradle;
+    // Resolve as dependências do container necessárias para as rotas (ou usar request.diContainer para obter scoped instances nas requests)
+    const cidadeRepository = diContainer.resolve("cidadeRepository");
     
     // 1. READ ALL (Listar todas as cidades)
     fastify.get('/', (request, reply) => {
@@ -15,7 +15,7 @@ export default async function cidadeRouter(fastify: FastifyInstance) {
     fastify.get<{ Params: { id: string } }>('/:id', async (request, reply) => {
         const id = parseInt(request.params.id);
         const cidade = await cidadeRepository.get(id);
-
+        
         if (!cidade) {
             return reply.status(404).send({erro: "Cidade não encontrada"});
         }

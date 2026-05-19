@@ -1,16 +1,23 @@
 import Fastify from 'fastify';
 import cidadeRouter from "./routers/cidade-router.js";
-import {container, type ContainerCradle} from "./container.js";
+import {diContainer, fastifyAwilixPlugin} from "@fastify/awilix";
+import initializeDi from "./container.js";
 
 const fastify = Fastify({ logger: true });
-fastify.register(cidadeRouter, { prefix: "/cidades" })
+
+// Register the plugin
+fastify.register(fastifyAwilixPlugin, { disposeOnClose: true, disposeOnResponse: true })
+initializeDi(diContainer)
 
 // Hook do Fastify para fechar a conexão com o banco de forma segura quando o app desligar
 fastify.addHook('onClose', async () => {
-    const { prisma } = container.cradle as ContainerCradle;
+    const prisma = diContainer.resolve("prisma");
     await prisma.$disconnect();
     console.log('Conexão com o PostgreSQL encerrada com sucesso.');
 });
+
+// Routers
+fastify.register(cidadeRouter, { prefix: "/cidades" })
 
 // Inicialização do Servidor
 const start = async () => {
